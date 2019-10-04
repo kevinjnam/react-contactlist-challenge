@@ -36,7 +36,7 @@ class ContactList extends Component {
     return (
       <div style={{ width: 400 }}>
         {this.contacts.map((contact, idx) => (
-          <ContactItem {...contact} />
+          <ContactItem key={idx} {...contact} />
         ))}
       </div>
     );
