@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatPhone } from '../utils/util';
 
 export default function FavoritesItem({ firstName, lastName, phone }) {
   return (
@@ -12,7 +13,7 @@ export default function FavoritesItem({ firstName, lastName, phone }) {
       <p>
         {firstName} <strong>{lastName}</strong>
       </p>
-      <p>{phone}</p>
+      <p>{formatPhone(phone)}</p>
     </div>
   );
 }

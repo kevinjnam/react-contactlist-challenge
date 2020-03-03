@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { formatPhone } from '../utils/util';
 
 export default function ContactItem({
   firstName,
@@ -44,7 +45,7 @@ export default function ContactItem({
           alignItems: 'center'
         }}
       >
-        <p>{phone}</p>
+        <p>{formatPhone(phone)}</p>
         <button onClick={handleClick} style={contactItemButtonStyle}>
           {isFavorite ? '-' : '+'}
         </button>

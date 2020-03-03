@@ -12,7 +12,7 @@ import ContactItem from '../components/ContactItem';
 //
 // [ ] Contacts without a phone number should be ignored.
 //
-// [ ] Phone numbers should be displayed in a (xxx) xxx-xxxx format.
+// [x] Phone numbers should be displayed in a (xxx) xxx-xxxx format.
 //
 // Ex.
 // J
