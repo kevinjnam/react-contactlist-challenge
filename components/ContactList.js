@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchContacts } from "../actions/contacts";
-import { getContacts } from "../selectors/contacts";
-import ContactItem from "../components/ContactItem";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchContacts, modifyFavorite } from '../actions/contacts';
+import { getContacts } from '../selectors/contacts';
+import ContactItem from '../components/ContactItem';
 
-// Render a list of contacts alphabetically by last name, first name.
+// [x] Render a list of contacts alphabetically by last name, first name.
 //
-// The list should be broken up into sections where each section has
-// a title of the first letter of the last names of contacts in that
-// section.
+// [ ] The list should be broken up into sections where each section has
+//     a title of the first letter of the last names of contacts in that
+//     section.
 //
-// Contacts without a phone number should be ignored.
+// [ ] Contacts without a phone number should be ignored.
 //
-// Phone numbers should be displayed in a (xxx) xxx-xxxx format.
+// [ ] Phone numbers should be displayed in a (xxx) xxx-xxxx format.
 //
 // Ex.
 // J
@@ -37,7 +37,12 @@ export default function ContactList() {
   return (
     <div style={{ width: 400 }}>
       {contacts.map((contact, idx) => (
-        <ContactItem key={idx} {...contact} />
+        <ContactItem
+          key={idx}
+          id={idx}
+          {...contact}
+          modifyFavorite={contact => dispatch(modifyFavorite(contact))}
+        />
       ))}
     </div>
   );
