@@ -17,6 +17,7 @@ export default function contacts(state = initialState, action) {
       };
     case 'FETCH_CONTACTS_COMPLETE':
       const sortedContactData = [...action.data].sort(sortByLastName);
+
       return {
         ...state,
         data: sortedContactData,

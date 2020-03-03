@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchContacts, modifyFavorite } from '../actions/contacts';
 import { getContacts } from '../selectors/contacts';
-import ContactItem from '../components/ContactItem';
+import { checkPhones } from '../utils/util';
+import ContactItem from './ContactItem';
 
 // [x] Render a list of contacts alphabetically by last name, first name.
 //
@@ -10,7 +11,7 @@ import ContactItem from '../components/ContactItem';
 //     a title of the first letter of the last names of contacts in that
 //     section.
 //
-// [ ] Contacts without a phone number should be ignored.
+// [x] Contacts without a phone number should be ignored.
 //
 // [x] Phone numbers should be displayed in a (xxx) xxx-xxxx format.
 //
@@ -30,13 +31,15 @@ export default function ContactList() {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
 
+  const validContacts = checkPhones(contacts);
+
   useEffect(() => {
     dispatch(fetchContacts());
   }, []);
 
   return (
     <div style={{ width: 400 }}>
-      {contacts.map((contact, idx) => (
+      {validContacts.map((contact, idx) => (
         <ContactItem
           key={idx}
           id={idx}

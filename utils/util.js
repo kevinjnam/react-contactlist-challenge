@@ -18,3 +18,7 @@ export const formatPhone = phone => {
 
   return newNumbers;
 };
+
+export const checkPhones = contacts => {
+  return contacts.filter(contact => contact.phone);
+};
