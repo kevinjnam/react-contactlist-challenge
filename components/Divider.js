@@ -1,10 +1,5 @@
 import React from 'react';
 
-export default function Divider({ category, children }) {
-  return (
-    <div>
-      <h3>{category}</h3>
-      {children}
-    </div>
-  );
+export default function Divider({ category }) {
+  return <h3>{category}</h3>;
 }
