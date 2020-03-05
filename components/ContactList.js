@@ -37,77 +37,19 @@ export default function ContactList() {
   let lastLetter = null;
   validContacts.forEach((contact, index) => {
     const letter = contact.lastName[0].toUpperCase();
-    const id = `${contact.lastName}-${index}`;
     if (lastLetter !== letter) {
       contactListJSX.push(<Divider key={lastLetter} category={letter} />);
     }
     contactListJSX.push(
       <ContactItem
-        id={id}
-        key={id}
+        id={index}
+        key={index}
         {...contact}
         modifyFavorite={contact => dispatch(modifyFavorite(contact))}
       />
     );
     lastLetter = letter;
   });
-
-  // const contactListJSX = () => {
-  //   const listOfDividers = getListOfDividers();
-  //   const organizedContactItems = organizeContactListByDivider(listOfDividers);
-  //   const dividedContacts = dividedContactsJSX(organizedContactItems);
-  //   return dividedContacts;
-  // };
-
-  // const dividedContactsJSX = organizedContactItems => {
-  //   const dividedContacts = [];
-  //   for (let dividers in organizedContactItems) {
-  //     dividedContacts.push(
-  //       <Divider key={dividers} category={dividers}>
-  //         {organizedContactItems[dividers]}
-  //       </Divider>
-  //     );
-  //   }
-  //   return dividedContacts;
-  // };
-
-  // const organizeContactListByDivider = listOfDividers => {
-  //   const contactList = {};
-  //   //create an array for each divider key
-  //   listOfDividers.forEach(divider => {
-  //     if (!contactList[divider]) {
-  //       contactList[divider] = new Array();
-  //     }
-  //   });
-
-  //   //organize each contact by last name
-  //   if (validContacts) {
-  //     validContacts.forEach((contact, index) => {
-  //       const letter = contact.lastName[0].toUpperCase();
-  //       const id = `${contact.lastName}-${index}`;
-  //       contactList[letter].push(
-  //         <ContactItem
-  //           id={id}
-  //           key={id}
-  //           {...contact}
-  //           modifyFavorite={contact => dispatch(modifyFavorite(contact))}
-  //         />
-  //       );
-  //     });
-  //   }
-  //   return contactList;
-  // };
-
-  // const getListOfDividers = () => {
-  //   const possibleDividers = {};
-  //   validContacts.forEach(contact => {
-  //     const firstLetterOfLastName = contact.lastName[0].toUpperCase();
-  //     if (!possibleDividers[firstLetterOfLastName]) {
-  //       possibleDividers[firstLetterOfLastName] = true;
-  //     }
-  //   });
-  //   return Object.keys(possibleDividers);
-  // };
 
   useEffect(() => {
     dispatch(fetchContacts());
